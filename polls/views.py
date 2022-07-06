@@ -1,9 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Question
+
 
 # Create your views here.
 def index(request):
-    return HttpResponse('Hi!')
+    latest_question_list = Question.objects.order_by('-pub_date')[:1]
+    output = ', '.join([b.question_text for b in latest_question_list])
+    return HttpResponse(output)
 
 
 def detail(request, question_id):
