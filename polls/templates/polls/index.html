@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    <h1>Polls</h1>
+{% endblock title %}
+
+
+{% block content %}
+    <ul>
+        {% for q in latest_question_list %}
+            <li><a href="/polls/{{ q.id }}/">{{ q.question_text }}</a></li>
+        {% empty %}
+            <li>No Polls available so far!</li>
+        {% endfor %}
+    </ul>
+
+{% endblock content %}
